@@ -2,7 +2,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Dish from './components/Dish';
 import { Container, Row, Col } from 'react-bootstrap';
-import './styles/App.scss';
+import './assets/styles/App.scss';
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 import { Card, Button, Badge } from 'react-bootstrap';
 
-const Dish = ({ image, name, price, isNew }) => {
+const Dish = ({ image, name, price, isNew, addToCart }) => {
   return (
     <Card className="position-relative">
       {isNew && (
@@ -18,7 +18,7 @@ const Dish = ({ image, name, price, isNew }) => {
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Text>{price} €</Card.Text>
-        <Button variant="success" onClick={() => alert(`Le plat ${name} est maintenant dans votre panier`)}>
+        <Button variant="success" onClick={addToCart}>
           Ajouter au panier
         </Button>
       </Card.Body>

@@ -31,10 +31,15 @@ const Dishes = [
 
 function App() {
   const [showNewOnly, setShowNewOnly] = useState(false);
+  const [cartCount, setcartCount] = useState(0);
 
   const handleShowNewOnly = () => {
     setShowNewOnly(prev => !prev);
   };
+
+  const addToCart = () => {
+    setcartCount(prevcount => prevcount + 1)
+  }
 
   const filteredDishes = Dishes.filter(dish =>
     dish.stock > 0 && (!showNewOnly || dish.isNew)
@@ -42,7 +47,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header cartCount={cartCount} />
       <Container as="main" className="my-4">
         <Button
           onClick={handleShowNewOnly}
@@ -54,7 +59,7 @@ function App() {
         <Row>
           {filteredDishes.map((dish, index) => (
             <Col md={4} key={index}>
-              <Dish
+              <Dish addToCart={addToCart}
                 image={dish.image}
                 name={dish.name}
                 price={dish.price}

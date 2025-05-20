@@ -1,5 +1,6 @@
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import '../assets/styles/Header.scss';
+import logo from '../assets/images/logo.png';
 
 function Header() {
   return (
@@ -7,7 +8,7 @@ function Header() {
       <Container>
         <Navbar.Brand href="/">
           <img
-            src="https://cdn.pixabay.com/photo/2018/03/26/14/18/man-3262834_960_720.png"
+            src={logo}
             alt="Logo"
           />
         </Navbar.Brand>

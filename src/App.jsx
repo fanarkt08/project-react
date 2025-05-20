@@ -8,8 +8,7 @@ function App() {
   return (
     <>
       <Header />
-      <main>
-        <Container className="my-4">
+        <Container as="main" className="my-4">
           <Row>
             <Col md={4}>
               <Dish
@@ -34,7 +33,6 @@ function App() {
             </Col>
           </Row>
         </Container>
-      </main>
       <Footer />
     </>
   );

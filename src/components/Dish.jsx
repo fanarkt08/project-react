@@ -1,10 +1,24 @@
 import { Card } from 'react-bootstrap';
-import '../assets/styles/Dish.scss';
+import Badge from 'react-bootstrap/Badge';
 
-const Dish = ({ image, name, price }) => {
+const Dish = ({ image, name, price, isNew }) => {
   return (
-    <Card>
-      <Card.Img variant="top" src={image} alt={name} />
+    <Card className="position-relative">
+      {isNew && (
+        <Badge
+          bg="primary"
+          className="position-absolute top-0 end-0 m-2"
+        >
+          Nouveau
+        </Badge>
+      )}
+      <Card.Img
+        variant="top"
+        src={image}
+        alt={name}
+        className="object-fit-cover"
+        style={{ height: '250px' }}
+      />
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Text>{price} €</Card.Text>

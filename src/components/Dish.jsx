@@ -18,7 +18,7 @@ const Dish = ({ image, name, price, isNew }) => {
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Text>{price} €</Card.Text>
-        <Button variant="success" onClick={() => alert(`${name} a été ajouter à votre panier.`)}>
+        <Button variant="success" onClick={() => alert(`Le plat ${name} est maintenant dans votre panier`)}>
           Ajouter au panier
         </Button>
       </Card.Body>

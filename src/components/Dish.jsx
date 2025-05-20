@@ -1,14 +1,10 @@
-import { Card } from 'react-bootstrap';
-import Badge from 'react-bootstrap/Badge';
+import { Card, Button, Badge } from 'react-bootstrap';
 
 const Dish = ({ image, name, price, isNew }) => {
   return (
     <Card className="position-relative">
       {isNew && (
-        <Badge
-          bg="primary"
-          className="position-absolute top-0 end-0 m-2"
-        >
+        <Badge bg="primary" className="position-absolute top-0 end-0 m-2">
           Nouveau
         </Badge>
       )}
@@ -22,6 +18,9 @@ const Dish = ({ image, name, price, isNew }) => {
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Text>{price} €</Card.Text>
+        <Button variant="success" onClick={() => alert(`${name} a été ajouter à votre panier.`)}>
+          Ajouter au panier
+        </Button>
       </Card.Body>
     </Card>
   );

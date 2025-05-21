@@ -5,6 +5,7 @@ import '../assets/styles/Dish.scss';
 
 const Dish = ({ image, name, price, isNew }) => {
   const { addToCart } = useContext(CartContext);
+  const {removeFromCart} = useContext(CartContext)
 
   return (
     <Card className="position-relative">
@@ -21,9 +22,14 @@ const Dish = ({ image, name, price, isNew }) => {
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Text>{price} €</Card.Text>
-        <Button variant="success" onClick={addToCart}>
-          Ajouter au panier
-        </Button>
+        <div className="d-flex flex-column gap-2 mt-3">
+          <Button variant="success" onClick={addToCart}>
+            Ajouter au panier
+          </Button>
+          <Button variant="outline-danger" onClick={removeFromCart}>
+            Retirer du panier
+          </Button>
+        </div>
       </Card.Body>
     </Card>
   );

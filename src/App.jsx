@@ -1,7 +1,7 @@
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Dish from './components/Dish';
-import { Container, Row, Col, Button, Alert } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import './assets/styles/App.scss';
 import { useState, useRef, useEffect, useContext } from 'react';
 import { CartProvider, CartContext } from './context/CartContext';
@@ -34,18 +34,9 @@ const AppContent = () => {
   const [showNewOnly, setShowNewOnly] = useState(false);
   const { cartCount } = useContext(CartContext);
   const prevCartCountRef = useRef(cartCount);
-  const [cartMessage, setCartMessage] = useState(null);
 
   useEffect(() => {
-    const currentCount = cartCount;
-    const prevCount = prevCartCountRef.current;
-
-    if (currentCount !== prevCount) {
-      setCartMessage(`Le panier est passé de ${prevCount} à ${currentCount} article(s).`);
-      prevCartCountRef.current = currentCount;
-
-      setTimeout(() => setCartMessage(null), 10000);
-    }
+    prevCartCountRef.current = cartCount;
   }, [cartCount]);
 
   const handleShowNewOnly = () => {
@@ -58,7 +49,7 @@ const AppContent = () => {
 
   return (
     <>
-      {cartMessage && <Alert variant="info">{cartMessage}</Alert>}
+      <div> Le panier est passé de {cartCount} à {prevCartCountRef.current} article(s)</div>
       <Button
         onClick={handleShowNewOnly}
         variant="outline-primary"

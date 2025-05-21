@@ -1,8 +1,8 @@
 import { Navbar, Container, Nav } from 'react-bootstrap';
-import '../assets/styles/Header.scss';
 import logo from '../assets/images/logo.png';
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
+import '../assets/styles/Header.scss';
 
 function Header() {
   const { cartCount } = useContext(CartContext)

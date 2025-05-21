@@ -1,6 +1,7 @@
 import { Card, Button, Badge } from 'react-bootstrap';
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
+import '../assets/styles/Dish.scss';
 
 const Dish = ({ image, name, price, isNew }) => {
   const { addToCart } = useContext(CartContext);
@@ -16,8 +17,7 @@ const Dish = ({ image, name, price, isNew }) => {
         variant="top"
         src={image}
         alt={name}
-        className="object-fit-cover"
-        style={{ height: '250px' }}
+        className="dish-img"
       />
       <Card.Body>
         <Card.Title>{name}</Card.Title>

@@ -1,11 +1,10 @@
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import logo from '../assets/images/logo.png';
-import { useContext } from 'react';
-import { CartContext } from '../context/CartContext';
 import '../assets/styles/Header.scss';
+import useCart from '../hooks/useCart';
 
 function Header() {
-  const { cartCount } = useContext(CartContext)
+  const { cartCount } = useCart()
 
   return (
     <Navbar bg="light" expand="lg">

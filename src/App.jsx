@@ -3,8 +3,9 @@ import Footer from './components/Footer';
 import Dish from './components/Dish';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import './assets/styles/App.scss';
-import { useState, useRef, useEffect, useContext } from 'react';
-import { CartProvider, CartContext } from './context/CartContext';
+import { useState, useRef, useEffect } from 'react';
+import { CartProvider } from './context/CartContext';
+import useCart from './hooks/useCart';
 
 const Dishes = [
   {
@@ -32,7 +33,7 @@ const Dishes = [
 
 const AppContent = () => {
   const [showNewOnly, setShowNewOnly] = useState(false);
-  const { cartCount } = useContext(CartContext);
+  const { cartCount } = useCart();
   const prevCartCountRef = useRef(cartCount);
 
   useEffect(() => {
@@ -49,7 +50,7 @@ const AppContent = () => {
 
   return (
     <>
-      <div> Le panier est passé de {cartCount} à {prevCartCountRef.current} article(s)</div>
+      <div> Le panier est passé de {prevCartCountRef.current} à {cartCount} article(s)</div>
       <Button
         onClick={handleShowNewOnly}
         variant="outline-primary"

@@ -4,8 +4,7 @@ import { CartContext } from '../context/CartContext';
 import '../assets/styles/Dish.scss';
 
 const Dish = ({ image, name, price, isNew }) => {
-  const { addToCart } = useContext(CartContext);
-  const {removeFromCart} = useContext(CartContext)
+  const { addToCart, removeFromCart } = useContext(CartContext);
 
   return (
     <Card className="position-relative">

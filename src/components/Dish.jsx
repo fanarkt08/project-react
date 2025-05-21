@@ -4,7 +4,7 @@ import { CartContext } from '../context/CartContext';
 import '../assets/styles/Dish.scss';
 
 const Dish = ({ image, name, price, isNew }) => {
-  const { addToCart, removeFromCart } = useContext(CartContext);
+  const { dispatch } = useContext(CartContext);
 
   return (
     <Card className="position-relative">
@@ -22,10 +22,16 @@ const Dish = ({ image, name, price, isNew }) => {
         <Card.Title>{name}</Card.Title>
         <Card.Text>{price} €</Card.Text>
         <div className="d-flex flex-column gap-2 mt-3">
-          <Button variant="success" onClick={addToCart}>
+          <Button
+            variant="success"
+            onClick={() => dispatch({ type: "increment" })}
+          >
             Ajouter au panier
           </Button>
-          <Button variant="outline-danger" onClick={removeFromCart}>
+          <Button
+            variant="outline-danger"
+            onClick={() => dispatch({ type: "decrement" })}
+          >
             Retirer du panier
           </Button>
         </div>

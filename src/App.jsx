@@ -1,10 +1,10 @@
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Dish from './components/Dish';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, Alert } from 'react-bootstrap';
 import './assets/styles/App.scss';
-import { useState } from 'react';
-import {CartProvider} from './context/CartContext'
+import { useState, useRef, useEffect, useContext } from 'react';
+import { CartProvider, CartContext } from './context/CartContext';
 
 const Dishes = [
   {
@@ -30,8 +30,23 @@ const Dishes = [
   }
 ];
 
-function App() {
+const AppContent = () => {
   const [showNewOnly, setShowNewOnly] = useState(false);
+  const { cartCount } = useContext(CartContext);
+  const prevCartCountRef = useRef(cartCount);
+  const [cartMessage, setCartMessage] = useState(null);
+
+  useEffect(() => {
+    const currentCount = cartCount;
+    const prevCount = prevCartCountRef.current;
+
+    if (currentCount !== prevCount) {
+      setCartMessage(`Le panier est passé de ${prevCount} à ${currentCount} article(s).`);
+      prevCartCountRef.current = currentCount;
+
+      setTimeout(() => setCartMessage(null), 10000);
+    }
+  }, [cartCount]);
 
   const handleShowNewOnly = () => {
     setShowNewOnly(prev => !prev);
@@ -42,32 +57,41 @@ function App() {
   );
 
   return (
+    <>
+      {cartMessage && <Alert variant="info">{cartMessage}</Alert>}
+      <Button
+        onClick={handleShowNewOnly}
+        variant="outline-primary"
+        className="mb-3"
+      >
+        {showNewOnly ? "Voir tous les plats" : "Nouveautés uniquement"}
+      </Button>
+      <Row>
+        {filteredDishes.map((dish, index) => (
+          <Col md={4} key={index}>
+            <Dish
+              image={dish.image}
+              name={dish.name}
+              price={dish.price}
+              isNew={dish.isNew}
+            />
+          </Col>
+        ))}
+      </Row>
+    </>
+  );
+};
+
+const App = () => {
+  return (
     <CartProvider>
       <Header />
       <Container as="main" className="my-4">
-        <Button
-          onClick={handleShowNewOnly}
-          variant="outline-primary"
-          className="mb-3"
-        >
-          {showNewOnly ? "Voir tous les plats" : "Nouveautés uniquement"}
-        </Button>
-        <Row>
-          {filteredDishes.map((dish, index) => (
-            <Col md={4} key={index}>
-              <Dish
-                image={dish.image}
-                name={dish.name}
-                price={dish.price}
-                isNew={dish.isNew}
-              />
-            </Col>
-          ))}
-        </Row>
+        <AppContent />
       </Container>
       <Footer />
     </CartProvider>
   );
-}
+};
 
 export default App;

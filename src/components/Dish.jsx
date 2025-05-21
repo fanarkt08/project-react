@@ -17,7 +17,6 @@ const Dish = ({ image, name, price, isNew }) => {
         variant="top"
         src={image}
         alt={name}
-        className="dish-img"
       />
       <Card.Body>
         <Card.Title>{name}</Card.Title>

@@ -1,6 +1,10 @@
 import { Card, Button, Badge } from 'react-bootstrap';
+import { useContext } from 'react';
+import { CartContext } from '../context/CartContext';
 
-const Dish = ({ image, name, price, isNew, addToCart }) => {
+const Dish = ({ image, name, price, isNew }) => {
+  const { addToCart } = useContext(CartContext);
+
   return (
     <Card className="position-relative">
       {isNew && (
